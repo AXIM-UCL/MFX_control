@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  4 13:58:03 2020
 
-@author: XPCI_BT
+@author: Carlos Navarrete-Leon
 """
 
 from pipython import GCSDevice, pitools
@@ -52,7 +52,11 @@ def move_x_abs(pidevice, x):
     moving=pidevice.IsMoving()['3']
     while moving:
         time.sleep(0.1)
-        moving=pidevice.IsMoving()['3']   
+        moving=pidevice.IsMoving()['3']
+        pos=get_x_sample(pidevice)       
+        if(abs(pos-x*1000)<0.01):
+            break
+        print('moving', pos)
     pos=get_x_sample(pidevice)       
     print('Movement done ---- Sample is at ' +str(pos)+ ' um on x')
 
