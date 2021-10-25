@@ -20,8 +20,7 @@ start_time = time.time()
 
 ######################## ------------Parameters ------------------#############
 
-
-path = r'C:\Data\21_10_21\CT_900proj_abs_calib_phantom\\'
+path = r'C:\Data\21_10_25\CT_900proj_abs_calib_phantom\\'
 try:
     out=os.mkdir(path)
 except OSError:
@@ -47,7 +46,7 @@ Hith = 100.0 #high energy threshold (keV)
 modeTh = '1COL0'  #must be '1COL0', '1COL1', '2COL'
 pixelMode = 'NONPI' # must be 'NONPI' or 'NPI' or 'NPISUM'
 
-#Number of flat field images annd interval (every how many projections)
+#Number of flat field images annd interval (every how many hprojections)
 flatNum=10
 flatInterval=900
 
@@ -59,12 +58,15 @@ proj0=0
 angle0=-360
 
 #Sample x-position
-sample_xin_xps=58
+sample_xin_xps=64.5                            
 #Position for flat field measurement
-sample_xout_xps=20
+sample_xout_xps=50
+sample_z_pi=0 #move yourself
+sample_x_pi=0 #move yourself
+sample_y_pi=-7.5 #move yourself
 
 ########## ---------- Information file -----------###############
-try:
+try:       
     file = open(path+"info.txt","a")
 except OSError:
     print ("Can't creat file: %s" % path+"info.txt")
@@ -86,9 +88,12 @@ file.write("Flat field interval: "); file.write(str(flatInterval)+"\n")
 file.write("No. of projections: "); file.write(str(N_proj)+"\n")
 file.write("Starting projection: "); file.write(str(proj0)+"\n")
 file.write("Starting angle: "); file.write(str(angle0)+"\n")
-file.write("XPS x_in_pos: "); file.write(str(sample_xin_xps)+"\n")
-file.write("XPS x_out_pos: "); file.write(str(sample_xout_xps)+"\n")
 
+file.write("XPS sample x_in_pos: "); file.write(str(sample_xin_xps)+"\n")
+file.write("XPS sample x_out_pos: "); file.write(str(sample_xout_xps)+"\n")
+file.write("PI sample x: "); file.write(str(sample_z_pi)+"\n")
+file.write("PI sample y: "); file.write(str(sample_x_pi)+"\n")
+file.write("PI sample z: "); file.write(str(sample_y_pi)+"\n")
 
 file.close()
 

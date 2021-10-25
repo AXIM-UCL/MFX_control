@@ -46,7 +46,7 @@ def FF_image(path, prefix, N_ff):
     out=tifffile.imread(path+prefix+str(0)+'.tif')
     for i in range(1,N_ff):
         file_name = path+prefix+str(i)+'.tif'
-        out+=tifffile.imread(path+prefix+str(0)+'.tif')
+        out+=tifffile.imread(file_name)
     out=out/N_ff
     return out
     
@@ -65,10 +65,9 @@ st_time=time.time()
 
 #######-------------- Parameters -------------###########
 
-in_folder=r'C:\Data\21_10_20\CT_900proj_abs_calib_phantom\RAW\\'
-out_folder=r'C:\Data\21_10_20\CT_900proj_abs_calib_phantom\FFC\\'
-  
-   
+in_folder=r'C:\Data\21_10_25\CT_100proj_abs_calib_phantom\RAW\\'
+out_folder=r'C:\Data\21_10_25\CT_100proj_abs_calib_phantom\FFC\\'
+
 N_proj=900
 proj0=0
 angles=np.linspace(proj0*360/N_proj,360,N_proj-proj0+1)
@@ -95,5 +94,3 @@ for angle in angles:
     tifffile.imwrite(out_folder+'ffc_000'+str(proj0)+'.tif', ffc, photometric='minisblack')
     print('Ellapsed time = ', time.time()-st_time)
     proj0+=1
-
-
