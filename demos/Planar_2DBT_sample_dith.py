@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 20 17:40:41 2021
-@author: Carlos Navarrete-Leon
+Created on Thu Jul 15 18:14:15 2021
 
-This script acquires a simple CT sequence of images in which only the sample
-is rotating.
+@author: XPCI_BT
 """
-
 import numpy as np
 import os
 import time
@@ -15,61 +12,61 @@ from source.BTCTProcessing.PEPITIFFIO import PEPITIFFWriter
 from source.BTCTMotors import tools_pi
 from source.BTCTMotors import tools_xps
 
-start_time = time.time()
 
+start_time = time.time()
+print('Waiting for source to stabilize')
+#time.sleep(3600)
 ######################## ------------Parameters ------------------#############
 
-path = r'C:\Data\21_10_25\CT_900proj_abs_calib_phantom\\'
-try:
-    out=os.mkdir(path)
-except OSError:
-    print ("Can't create directory %s" % path)
-path=path+'RAW\\'  
-try:
-    out=os.mkdir(path)
-except OSError:
-    print ("Can't create directory %s" % path)
+path=r'D:\Data\21_12_09\DirectionalDF_=_40kVp_250uA_100umpitch_medfoc\\'
 
 #Source parameters
 voltage=40
 current=250
 focus_mode='Medium'
 
+M_mask_sample=1.17
+
 # Detector acquisition parameters.
 
-expTime = 1 #integration time for the detector
-expNum = 1 #number of images to be acquired
+expTime = 1 #integration time for the detector in sec
+expNum = 10 #number of images to be acquired
 expDelay = 0.1 #time interval between frames$
-Loth = 7.0 #low energy threshold (keV)
+Loth = 5.0 #low energy threshold (keV)
 Hith = 100.0 #high energy threshold (keV)
 modeTh = '1COL0'  #must be '1COL0', '1COL1', '2COL'
 pixelMode = 'NONPI' # must be 'NONPI' or 'NPI' or 'NPISUM'
 
-#Number of flat field images annd interval (every how many hprojections)
+#Number of flat field images annd interval (every how many projections)
 flatNum=10
-flatInterval=900
 
-N_proj=900
-proj0=0
+#Piezo motors initial positions
+#sample_xin=6.0
+sample_z=0.0
+sample_y=1.0
 
-
-#Piezo motors initial positions (will only move rotator)
-angle0=-360
-
-#Sample x-position
-sample_xin_xps=64.5                            
+#position in XPS is 73.7
+sample_xin_xps=73.7
 #Position for flat field measurement
-sample_xout_xps=50
-sample_z_pi=0 #move yourself
-sample_x_pi=0 #move yourself
-sample_y_pi=-7.5 #move yourself
+sample_xout_xps=-75
+
+#Mask positions
+Mrot=-1.5
+Mx=1.0
+Mz=-1.0
+My=15.0
+
+#Dithering steps
+num_dith_x=8
+num_dith_y=8
 
 ########## ---------- Information file -----------###############
-try:       
-    file = open(path+"info.txt","a")
+try:
+    out=os.mkdir(path)
 except OSError:
-    print ("Can't creat file: %s" % path+"info.txt")
+    print ("Can't create directory %s" % path)
 
+file = open(path+"info.txt","a")
 
 file.write("Source Voltage: "); file.write(str(voltage)+"\n")
 file.write("Source Current: "); file.write(str(current)+"\n")
@@ -83,23 +80,24 @@ file.write("TH mode: "); file.write(str(modeTh)+"\n")
 file.write("Pixel mode: "); file.write(str(pixelMode)+"\n")
 
 file.write("No. flat frames: "); file.write(str(flatNum)+"\n")
-file.write("Flat field interval: "); file.write(str(flatInterval)+"\n")
-file.write("No. of projections: "); file.write(str(N_proj)+"\n")
-file.write("Starting projection: "); file.write(str(proj0)+"\n")
-file.write("Starting angle: "); file.write(str(angle0)+"\n")
 
-file.write("XPS sample x_in_pos: "); file.write(str(sample_xin_xps)+"\n")
-file.write("XPS sample x_out_pos: "); file.write(str(sample_xout_xps)+"\n")
-file.write("PI sample x: "); file.write(str(sample_z_pi)+"\n")
-file.write("PI sample y: "); file.write(str(sample_x_pi)+"\n")
-file.write("PI sample z: "); file.write(str(sample_y_pi)+"\n")
+#file.write("PI x_pos: "); file.write(str(sample_xin)+"\n")
+#file.write("PI z_pos: "); file.write(str(sample_z)+"\n")
+file.write("PI y_pos: "); file.write(str(sample_y)+"\n")
+#file.write("PI x_out_pos: "); file.write(str(sample_xout)+"\n")
+file.write("XPS x_in_pos: "); file.write(str(sample_xin_xps)+"\n")
+file.write("XPS x_out_pos: "); file.write(str(sample_xout_xps)+"\n")
+file.write("XPS Mask rot: "); file.write(str(Mrot)+"\n")
+file.write("XPS Mask x: "); file.write(str(Mx)+"\n")
+file.write("XPS Mask z: "); file.write(str(Mz)+"\n")
+file.write("XPS Mask y: "); file.write(str(My)+"\n")
 
 file.close()
 
 ######### ------ Acquisition ------- ############
 
-proj0=0
-angles=angle0+np.linspace(proj0*360/N_proj,360,N_proj-proj0+1)#, endpoint=False) #Angles for the projections
+x_step=100e-3/num_dith_x*M_mask_sample
+y_step=100e-3/num_dith_y*M_mask_sample
 
 #Start Pixirad
 print('Starting Pixirad')
@@ -122,9 +120,10 @@ piezo=tools_pi.connect_piezo()
 tools_xps.connect_XPS()
 
 print('Moving sample to starting point')
-tools_pi.move_theta_abs(piezo, angle0)
-tools_xps.move_xsample_abs(sample_xin_xps-0.1)
+tools_xps.move_xsample_abs(sample_xin_xps-x_step)
 tools_xps.move_xsample_abs(sample_xin_xps)
+tools_pi.move_y_abs(piezo, sample_y-y_step)
+tools_pi.move_y_abs(piezo, sample_y)
 print('Sample at starting point')
 
 #Acquire first flat field
@@ -138,14 +137,15 @@ for i in range(flatNum):
     
 tools_xps.move_xsample_abs(sample_xin_xps)
 
-#Rotate and acquire images
-for angle in angles:
-    print('Acquiring projection # ', proj0)
-    tools_pi.move_theta_abs(piezo, angle)
-    file_name = path+'proj_000'+str(proj0)+'.tif'
-    img, _ = det.acquire()
-    out.save(img, file_name, metadata_list=(det,))
-    proj0+=1
+for i in range(num_dith_y):
+    tools_pi.move_y_abs(piezo, sample_y+i*y_step)
+    for j in range(num_dith_x):
+        tools_xps.move_xsample_abs(sample_xin_xps+j*x_step)
+        file_name = path+'sample_xpos_'+str(round(j*x_step, 4))+'_ypos_'+str(round(i*y_step,4))+'.tif'
+        img, _ = det.acquire()
+        out.save(img, file_name, metadata_list=(det,))
+    tools_xps.move_xsample_abs(sample_xin_xps-x_step)
+    tools_xps.move_xsample_abs(sample_xin_xps)
 
 #Acquire last flat field
 print('Acquiring FlatField')
@@ -161,3 +161,5 @@ det.terminate(dethermalize=True)
 
 elapsed_time = time.time() - start_time
 print('Elapsed time: '+ str(elapsed_time)+ ' s')
+
+    

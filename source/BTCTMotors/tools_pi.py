@@ -62,11 +62,12 @@ def move_x_abs(pidevice, x):
 
 def move_y_abs(pidevice, y):
     pidevice.MOV('5', y)
-    moving=pidevice.IsMoving()['5']
-    while moving:
-        time.sleep(0.1)
-        moving=pidevice.IsMoving()['5']   
-    pos=get_y_sample(pidevice)        
+    pos=get_y_sample(pidevice)
+    time.sleep(0.5)
+    while(abs(pos-y*1000)>0.5):
+        print('moving', pos, y*1000, pos-y*1000)
+        pos=get_y_sample(pidevice)
+        time.sleep(0.5)
     print('Movement done ---- Sample is at ' +str(pos)+ ' um on y')
 
 def move_z_abs(pidevice, z):

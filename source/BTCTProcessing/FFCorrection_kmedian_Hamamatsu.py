@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct 21 11:55:37 2021
+Created on Fri Jan 28 08:41:28 2022
 
-@author: XPCI_BT
+@author: Carlos Navarrete-Leon
 """
+
 import numpy as np 
 import os
 import tifffile
@@ -18,8 +19,8 @@ import time
 def k_median_filter(image, patchsize=3, k=3):
     out=np.ones(image.shape)
     bads=0
-    for i in range(patchsize, 402-patchsize):
-        for j in range(patchsize, 512-patchsize):
+    for i in range(patchsize, 2340-patchsize):
+        for j in range(patchsize, 2368-patchsize):
             window=image[i-patchsize:i+patchsize+1,j-patchsize:j+patchsize+1].ravel()
             window.astype(float)
             cent_pix=image[i,j]
@@ -51,12 +52,13 @@ def FF_image(path, prefix, N_ff):
     return out
     
 #Flat field correction with post k-median folder
-def FlatField(img_raw, ff_start, ff_end, proj_no, N_proj, patchsize=2):
+def FlatField(img_raw, ff_start, ff_end, dark_start, dark_end, proj_no, N_proj, patchsize=2):
     weight=proj_no/N_proj
     ff_mean=(1-weight)*ff_start + weight*ff_end
-    ffc_raw=img_raw/ff_mean
+    dark_mean=(1-weight)*dark_start + weight*dark_end
+    ffc_raw=(img_raw-dark_mean)/(ff_mean-dark_mean)
     ffc_raw=np.nan_to_num(ffc_raw)
-    ffc=k_median_filter(ffc_raw)
+    ffc=ffc_raw#k_median_filter(ffc_raw)
     ffc=np.where(ffc>1.1, 1.0, ffc)
     ffc=np.where(ffc<=0.0, 0.05, ffc)
     return ffc.astype(np.float32)
@@ -86,12 +88,15 @@ except OSError:
 for angle in angles:
     #proj0=int(angle*N_proj/360)
     name='proj_000'+str(proj0)+'.tif.tif'
-    ff_start=FF_image(in_folder, 'ff_pre_', N_ff)#[:,:512] #only left tile
-    ff_end=FF_image(in_folder, 'ff_pre_', N_ff)#[:,:512]#only left tile
+    ff_start=FF_image(in_folder, 'ff_pre_', N_ff) #only left tile
+    ff_end=FF_image(in_folder, 'ff_pre_', N_ff)#only left tile
     
-    raw_proj=tifffile.imread(in_folder+name)#[:,:512]#only left tile
+    dark_start=FF_image(in_folder, 'dark_pre_', N_ff)
+    dark_end=FF_image(in_folder, 'dark_pre_', N_ff)
+    
+    raw_proj=tifffile.imread(in_folder+name)#only left tile
     print('Projection: ', proj0)
-    ffc=FlatField(raw_proj, ff_start, ff_end, proj0, N_proj)#.astype('uint16')
+    ffc=FlatField(raw_proj, ff_start, ff_end, dark_start, dark_end, proj0, N_proj)#.astype('uint16')
     tifffile.imwrite(out_folder+'ffc_000'+str(proj0)+'.tif.tif', ffc, photometric='minisblack')
     print('Ellapsed time = ', time.time()-st_time)
     proj0+=1
