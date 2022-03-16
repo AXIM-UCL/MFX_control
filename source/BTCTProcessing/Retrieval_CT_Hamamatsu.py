@@ -93,9 +93,9 @@ def retrieval_save_steps(proj, folder, folder_out, xs, ys, Nproj):
 
 
 ##-------------------Main----------------##
-folder=r'D:\Data\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\\'
-folder_data=r'D:\Data\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC'
-beamlet_name=r'D:\Data\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC\dith_x_0dith_y_0\\ff_pre.tif'
+folder=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\\'
+folder_data=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC'
+beamlet_name=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC\dith_x_0dith_y_0\\ff_pre.tif'
 folder_out=folder+'Retrieved\\'
 #beamlet_name='sample_xpos_0.0_ypos_0.0.dat'
 
@@ -115,16 +115,16 @@ except OSError:
 
 Nproj=2000
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    pool = mp.Pool(8)
+#     pool = mp.Pool(mp.cpu_count())
     
-    for i in range(Nproj):
-        print('Processing projection: ', i)
-        pool.apply_async(retrieval_save_steps, args=(i, folder_data, folder_out, xs, ys, Nproj))
-    pool.close()
+#     for i in range(Nproj):
+#         print('Processing projection: ', i)
+#         pool.apply_async(retrieval_save_steps, args=(i, folder_data, folder_out, xs, ys, Nproj))
+#     pool.close()
 
-#retrieval_save_steps(5, folder_data, folder_out, xs, ys, Nproj)
+retrieval_save_steps(10, folder_data, folder_out, xs, ys, Nproj)
 
 
 #if __name__ == '__main__':
