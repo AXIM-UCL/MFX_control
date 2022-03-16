@@ -16,7 +16,7 @@ from scipy.interpolate import NearestNDInterpolator
 import time
 from scipy.signal import find_peaks
 import cv2
-import multiprocessing as mp
+#import multiprocessing as mp
 import os
 import tifffile
 
