@@ -10,15 +10,16 @@ is rotating.
 import numpy as np
 import os
 import time
-from source.BTCTDetectors import hamamatsu_functions
+from source.BTCTDetectors import hamamatsu_functions2 as hf
 from source.BTCTMotors import tools_pi
 from source.BTCTMotors import tools_xps
 
 start_time = time.time()
+#time.sleep(2400)
 
 ######################## ------------Parameters ------------------#############
 
-path = r'D:\Data\22_01_27\CT_360proj_abs_calib_phantom\\'
+path = r'D:\Data\22_02_28\CT_2000proj_abs_calib_phantom_big\\'
 try:
     out=os.mkdir(path)
 except OSError:
@@ -41,9 +42,9 @@ expNum = 1 #number of images to be acquired
 
 #Number of flat field images annd interval (every how many hprojections)
 flatNum=10
-flatInterval=100
+flatInterval=2000
 
-N_proj=360
+N_proj=2000
 proj0=0
 
 
@@ -51,7 +52,7 @@ proj0=0
 angle0=-360
 
 #Sample x-position
-sample_xin_xps=65                            
+sample_xin_xps=62                           
 #Position for flat field measurement
 sample_xout_xps=-75
 
@@ -59,9 +60,10 @@ beam_stopper_xpos=0
 
 sample_z_pi=0 #move yourself
 sample_x_pi=0 #move yourself
-sample_y_pi=-11 #move yourself
+sample_y_pi=-8 #move yourself
 
 ########## ---------- Information file -----------###############
+
 try:       
     file = open(path+"info.txt","a")
 except OSError:
@@ -95,8 +97,8 @@ angles=angle0+np.linspace(proj0*360/N_proj,360,N_proj-proj0+1)#, endpoint=False)
 
 #Start Hamamatsu
 print('Starting Hamamatsu')
-hamamatsu_functions.HM_init()
-hamamatsu_functions.HM_setExposureTime(expTime)
+hf.HM_init()
+hf.HM_setExposureTime(expTime)
 print('Hamamatsu initialized')
 
 #Connect the motors and move to starting point
@@ -110,30 +112,30 @@ tools_xps.move_xsample_abs(sample_xin_xps-0.1)
 tools_xps.move_xsample_abs(sample_xin_xps)
 print('Sample at starting point')
 
-#Acquire first Dark
-print('Acquiring Dark')
-tools_xps.move_xsample_abs(beam_stopper_xpos)
+# #Acquire first Dark
+# print('Acquiring Dark')
+# tools_xps.move_xsample_abs(beam_stopper_xpos)
 
-for i in range(flatNum):
-    file_name = path+'dark_pre_'+str(i)
-    hamamatsu_functions.HM_AcquireWaitSave(file_name)
+# for i in range(flatNum):
+#     file_name = path+'dark_pre_'+str(i)
+#     hamamatsu_functions.HM_AcquireWaitSave(file_name)
 
-#Acquire first flat field
-print('Acquiring FlatField')
-tools_xps.move_xsample_abs(sample_xout_xps)
+# #Acquire first flat field
+# print('Acquiring FlatField')
+# tools_xps.move_xsample_abs(sample_xout_xps)
 
-for i in range(flatNum):
-    file_name = path+'ff_pre_'+str(i)
-    hamamatsu_functions.HM_AcquireWaitSave(file_name)
+# for i in range(flatNum):
+#     file_name = path+'ff_pre_'+str(i)
+#     hamamatsu_functions.HM_AcquireWaitSave(file_name)
     
-tools_xps.move_xsample_abs(sample_xin_xps)
+# tools_xps.move_xsample_abs(sample_xin_xps)
 
 #Rotate and acquire images
 for angle in angles:
     print('Acquiring projection # ', proj0)
     tools_pi.move_theta_abs(piezo, angle)
     file_name = path+'proj_000'+str(proj0)
-    hamamatsu_functions.HM_AcquireWaitSave(file_name)
+    hf.HM_AcquireWaitSaveTest(file_name, expTime)
     proj0+=1
 
 #Acquire last flat field
@@ -141,7 +143,7 @@ print('Acquiring FlatField')
 tools_xps.move_xsample_abs(sample_xout_xps)
 for i in range(flatNum):
     file_name = path+'ff_post_'+str(i)
-    hamamatsu_functions.HM_AcquireWaitSave(file_name)
+    hf.HM_AcquireWaitSaveTest(file_name, expTime)
 
 #Acquire last Dark
 print('Acquiring Dark')
@@ -149,12 +151,12 @@ tools_xps.move_xsample_abs(beam_stopper_xpos)
 
 for i in range(flatNum):
     file_name = path+'dark_post_'+str(i)
-    hamamatsu_functions.HM_AcquireWaitSave(file_name)
+    hf.HM_AcquireWaitSaveTest(file_name, expTime)
 
 
 #tools_xps.move_xsample_abs(sample_xin_xps)
 
-hamamatsu_functions.HM_close()
+hf.HM_close()
 
 elapsed_time = time.time() - start_time
 print('Elapsed time: '+ str(elapsed_time)+ ' s')

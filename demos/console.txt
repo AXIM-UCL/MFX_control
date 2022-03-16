@@ -1,0 +1,453 @@
+Can't create directory D:\Data\22_02_07\test4\\
+Can't create directory D:\Data\22_02_07\test4\\RAW\
+Starting Hamamatsu
+b'RemoteEx Ready\r'
+b'0,CamParamSet\r'
+b'0,CamParamSet\r'
+Hamamatsu initialized
+Acquiring 0
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,busy,Acquire\r'
+AcqStatus()
+b'0,AcqStatus,busy,Acquire\r'
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_0.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_0.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_0.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_0.img\r'
+Acquiring 1
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_1.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_1.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_1.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_1.img\r'
+Acquiring 2
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_2.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_2.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_2.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_2.img\r'
+Acquiring 3
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_3.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_3.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_3.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_3.img\r'
+Acquiring 4
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_4.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_4.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_4.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_4.img\r'
+Acquiring 5
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_5.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_5.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_5.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_5.img\r'
+Acquiring 6
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_6.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_6.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_6.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_6.img\r'
+Acquiring 7
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_7.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_7.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_7.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_7.img\r'
+Acquiring 8
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_8.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_8.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_8.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_8.img\r'
+Acquiring 9
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_9.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_9.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_9.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_9.img\r'
+Acquiring 10
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_10.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_10.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_10.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_10.img\r'
+Acquiring 11
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_11.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_11.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_11.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_11.img\r'
+Acquiring 12
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_12.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_12.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_12.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_12.img\r'
+Acquiring 13
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_13.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_13.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_13.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_13.img\r'
+Acquiring 14
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_14.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_14.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_14.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_14.img\r'
+Acquiring 15
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_15.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_15.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_15.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_15.img\r'
+Acquiring 16
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_16.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_16.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_16.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_16.img\r'
+Acquiring 17
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_17.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_17.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_17.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_17.img\r'
+Acquiring 18
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_18.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_18.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_18.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_18.img\r'
+Acquiring 19
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_19.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_19.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_19.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_19.img\r'
+Acquiring 20
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_20.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_20.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_20.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_20.img\r'
+Acquiring 21
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_21.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_21.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_21.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_21.img\r'
+Acquiring 22
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_22.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_22.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_22.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_22.img\r'
+Acquiring 23
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_23.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_23.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_23.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_23.img\r'
+Acquiring 24
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_24.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_24.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_24.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_24.img\r'
+Acquiring 25
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_25.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_25.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_25.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_25.img\r'
+Acquiring 26
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_26.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_26.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_26.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_26.img\r'
+Acquiring 27
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_27.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_27.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_27.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_27.img\r'
+Acquiring 28
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_28.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_28.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_28.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_28.img\r'
+Acquiring 29
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_29.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_29.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_29.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_29.img\r'
+Acquiring 30
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_30.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_30.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_30.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_30.img\r'
+Acquiring 31
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_31.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_31.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_31.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_31.img\r'
+Acquiring 32
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_32.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_32.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_32.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_32.img\r'
+Acquiring 33
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_33.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_33.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_33.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_33.img\r'
+Acquiring 34
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_34.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_34.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_34.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_34.img\r'
+Acquiring 35
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_35.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_35.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_35.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_35.img\r'
+Acquiring 36
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_36.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_36.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_36.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_36.img\r'
+Acquiring 37
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_37.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_37.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_37.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_37.img\r'
+Acquiring 38
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_38.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_38.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_38.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_38.img\r'
+Acquiring 39
+b'0,AcqStart\r'
+AcqStart(Acquire)
+b'0,AcqStatus,idle\r'
+AcqStatus()
+b'0,AcqStatus,idle\r'
+done, saving
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_39.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_39.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_39.img\r'
+b'4,Save image file: D:\\Data\\22_02_07\\test4\\\\RAW\\try_39.img\r'
+Acquiring 40
+b'0,AcqStart\r'
+AcqStart(Acquire)

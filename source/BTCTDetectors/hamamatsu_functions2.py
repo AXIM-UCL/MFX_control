@@ -8,6 +8,9 @@ Spyder Editor
 import socket
 import os.path
 import time
+import numpy as np
+from source.BTCTDetectors import RIGOL_functions as rf
+
 
 def HM_init():
     global HM_socket
@@ -15,8 +18,8 @@ def HM_init():
     port = 1001
 
     HM_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #HM_socket.settimeout(0.05)
     HM_socket.settimeout(1)
-    #HM_socket.settimeout(1)
     #HM_socket.settimeout(0.0)
 
     # attempt to fix the occasional timeout 
@@ -25,8 +28,10 @@ def HM_init():
     except OSError:
         pass
         
+    print(rf.check_COMM())
     
     HM_readans()
+    HM_sendcmd('AppStart(0)')
 
     return HM_socket
 
@@ -59,7 +64,7 @@ def HM_readans():
         #print(last)
         msg = msg + last
         count = count + 1
-    #print(msg)
+    print(msg)
     return msg
 
 def HM_closeAll():
@@ -72,6 +77,7 @@ def HM_setExposureTime(Exposure_time):
 
 def HM_AcqStart():
     HM_sendcmd(r'AcqStart(Acquire)')
+    print('Acquiring Image')
     
 def HM_AcqStatus():
     err_flag = 0 
@@ -79,13 +85,14 @@ def HM_AcqStatus():
     while err_flag == 0:
         try:
             ans = HM_sendcmd(r'AcqStatus()')
+            print(r'AcqStatus()')
             err_flag = 1
         except OSError:
             err_flag = 1
+    #print(ans)
     return ans
     
 def HM_ImgSave(file_address, image_format = 0):
-    
     if image_format == 0:
         # save the last image as tiff file
         HM_sendcmd(r'ImgSave(Current,TIFF,' + file_address + '.tif,1)')
@@ -93,6 +100,7 @@ def HM_ImgSave(file_address, image_format = 0):
         # save the last image as his file
         HM_sendcmd(r'ImgSave(Current,img,' + file_address + '.img,1)')        
         #HM_readans()
+    #print(a)
     
 def HM_SequenceSave(file_address, image_format = 0):
     if image_format == 0:
@@ -102,28 +110,126 @@ def HM_SequenceSave(file_address, image_format = 0):
          # save the last image as his file
         HM_sendcmd(r'SeqSave(HIS,' + file_address + '.his)')        
 
+def HM_AcquireWaitSaveTest(file_address, expTime):
+    finished=0
+    counter=0
+    while (finished==0):
+        t0=time.time()
+        msg = HM_AcqStart()
+        if msg == b'5,Error in DCAM module. Command, Error: dcamcap_start, Unreach error!,1\r':
+                print('Detector lost... restarting') 
+                counter+=1
+                os.system("taskkill /f /im HiRemoteEx.exe")
+                rf.power_OFF()
+                rf.power_ON()
+                os.startfile('"C:\Program Files\HiPic\HiPic950\HiRemoteEx.exe"')
+                HM_init()
+                HM_AcqStart()
+        time.sleep(expTime*0.8)
+        done=0
+        while(done==0):      
+            check_status = HM_AcqStatus()
+            if check_status == b'5,Error in DCAM module. Command, Error: dcamcap_start, Unreach error!,1\r':
+                print('Detector lost... restarting')   
+                counter+=1
+                os.system("taskkill /f /im HiRemoteEx.exe")
+                rf.power_OFF()
+                rf.power_ON()
+                os.startfile('"C:\Program Files\HiPic\HiPic950\HiRemoteEx.exe"')
+                HM_init()
+                HM_AcqStart()
+                
+            if check_status == b'0,AcqStatus,idle\r':
+                print('Done, saving image')
+                while not os.path.isfile(file_address + '.tif'):
+                    HM_ImgSave(file_address, 0)
+                    time.sleep(0.1)
+                done = 1
+                finished = 1
+            waittime=time.time()-t0
+            
+            if (waittime > 10):
+                print(waittime)
+                print('Problems, stopping and restarting App')
+                counter+=1
+                HM_sendcmd('AcqStop()')
+                HM_sendcmd('AppEnd()')
+                os.system("taskkill /f /im HiRemoteEx.exe")
+                rf.power_OFF()
+                rf.power_ON()
+                os.startfile('"C:\Program Files\HiPic\HiPic950\HiRemoteEx.exe"')
+                HM_init()
+                done=1
+    return counter
+                
+def HM_AcqWaitSaveSequenceTest(file_address, expTime, expNum):
+    finished=0
+    while (finished==0):
+        t0=time.time()
+        HM_StartSequence(1)
+        #time.sleep(expTime*expNum*0.7)
+        done=0
+        while done == 0:
+            check_status = HM_SeqStatus()
+            print(check_status)
+            frame = HM_sendcmd('SeqImgIndexGet()')
+            print('Frame #', frame)
+            if check_status == b'0,SeqStatus,idle\r':
+                print('Done, saving sequence')
+                # time to save the image
+                image_extension = '.his'
+                while not os.path.isfile(file_address + image_extension):
+                    HM_SequenceSave(file_address,1)
+                done = 1
+                finished=1
+            waittime=time.time()-t0
+            if (waittime > (expTime*expNum) + 20):
+                print(waittime)
+                print('Problems, stopping and restarting App')
+                HM_sendcmd('SeqStop()')
+                HM_sendcmd('AppEnd()')
+                HM_sendcmd('AppStart(0)')
+                done=1
+
+
     
-    
-def HM_AcquireWaitSave(file_address,save_format = 0):
+def HM_AcquireWaitSave(file_address,save_format = 0, expTime=1):
     # this is to acquire an image, wait while it is done and save it as tiff
     # in case of HIS = 1 it does the same as a Seq and save as his
     
     if save_format == 0 or save_format == 2:
-        HM_AcqStart()
         done = 0
-        while done == 0:
-            check_status = HM_AcqStatus()
-            if check_status == b'0,AcqStatus,idle\r':
-                #print('done')
-                done = 1
-                # time to save the image
-                image_extension = (save_format == 0 and '.tif') or (save_format == 2 and '.img') or ''
-                while not os.path.isfile(file_address + image_extension):
-                    if save_format == 0:
-                        HM_ImgSave(file_address)
-                    else:
-                        HM_ImgSave(file_address,2)
-            #print(check_status)
+        while(done==0):
+            st_time=time.time()
+            HM_AcqStart()
+            time.sleep(expTime*0.9)
+            #done = 0
+            waittime = 0
+            problems=0
+            while (done == 0 and problems==0):
+                #time.sleep(0.01)
+                check_status = HM_AcqStatus()
+                if check_status == b'0,AcqStatus,idle\r':
+                    #print('done')
+                    # time to save the image
+                    image_extension = (save_format == 0 and '.tif') or (save_format == 2 and '.img') or ''
+                    while not os.path.isfile(file_address + image_extension):
+                        if save_format == 0:
+                            HM_ImgSave(file_address)
+                            #time.sleep(0.1)
+                        else:
+                            HM_ImgSave(file_address,2)
+                            #time.sleep(0.1)
+                    done = 1
+                    #time_flag = 1
+                                    
+                if (waittime >= 20):
+                    HM_sendcmd('AcqStop()')
+                    print('Problems, stopping acquisition')
+                    
+                    problems=1
+                #print(check_status)
+                waittime+=time.time()-st_time
     else:
         HM_StartSequence(1)
         done = 0
@@ -137,7 +243,7 @@ def HM_AcquireWaitSave(file_address,save_format = 0):
                 while not os.path.isfile(file_address + image_extension):
                     HM_SequenceSave(file_address,1)
             #print(check_status)
-    HM_closeAll()
+    #HM_closeAll()
 
 def HM_SetSequence(No_loops, time_interval = 0):
     HM_sendcmd('SeqParamSet(NoOfLoops,' + str(No_loops) + ')')
@@ -244,4 +350,14 @@ def HM_clearbuffer():
         except OSError:
             err_flag = 1
     #print(msg)
-    return msg       
+    return msg   
+
+def read_IMG_data(file_img, offset, width, height):
+    
+    fid=open(file_img, "r")
+    
+    fid.seek(offset)
+    temp=np.fromfile(fid, dtype=np.int16, count=height*width).reshape((height, width))   
+    fid.close()
+    return temp
+    

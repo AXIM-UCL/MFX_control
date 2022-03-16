@@ -44,9 +44,9 @@ def k_median_filter(image, patchsize=3, k=3):
 
 #To average the 10 flat field images    
 def FF_image(path, prefix, N_ff):
-    out=tifffile.imread(path+prefix+str(0)+'.tif.tif')
+    out=tifffile.imread(path+prefix+str(0)+'.tif')
     for i in range(1,N_ff):
-        file_name = path+prefix+str(i)+'.tif.tif'
+        file_name = path+prefix+str(i)+'.tif'
         out+=tifffile.imread(file_name)
     out=out/N_ff
     return out
@@ -59,24 +59,26 @@ def FlatField(img_raw, ff_start, ff_end, dark_start, dark_end, proj_no, N_proj, 
     ffc_raw=(img_raw-dark_mean)/(ff_mean-dark_mean)
     ffc_raw=np.nan_to_num(ffc_raw)
     ffc=ffc_raw#k_median_filter(ffc_raw)
-    ffc=np.where(ffc>1.1, 1.0, ffc)
+    ffc=np.where(ffc>1.1, 1.1, ffc)
     ffc=np.where(ffc<=0.0, 0.05, ffc)
-    return ffc.astype(np.float32)
+    ffc=ffc/np.amax(ffc)
+    ffc = np.round(ffc * 65535).astype(np.uint16)
+    return ffc
 
 st_time=time.time()
 
 #######-------------- Parameters -------------###########
 
-in_folder=r'D:\Data\22_01_27\CT_100proj_abs_calib_phantom\RAW\\'
-out_folder=r'D:\Data\22_01_27\CT_100proj_abs_calib_phantom\FFC\\'
+in_folder=r'D:\Data\22_02_28\CT_2000proj_abs_calib_phantom_big\RAW\\'
+out_folder=r'D:\Data\22_02_28\CT_2000proj_abs_calib_phantom_big\FFC\\'
 
-N_proj=100
+N_proj=2000
 proj0=0
 angles=np.linspace(proj0*360/N_proj,360,N_proj-proj0+1)
 #angles=[343]
 
 N_ff=10
-ff_freq=900 #(in terms of the projection angle)
+ff_freq=2000 #(in terms of the projection angle)
 
 try:
     out=os.mkdir(out_folder)
@@ -87,16 +89,16 @@ except OSError:
 
 for angle in angles:
     #proj0=int(angle*N_proj/360)
-    name='proj_000'+str(proj0)+'.tif.tif'
-    ff_start=FF_image(in_folder, 'ff_pre_', N_ff) #only left tile
-    ff_end=FF_image(in_folder, 'ff_pre_', N_ff)#only left tile
+    name='proj_000'+str(proj0)+'.tif'
+    ff_start=FF_image(in_folder, 'ff_post_', N_ff) #only left tile
+    ff_end=FF_image(in_folder, 'ff_post_', N_ff)#only left tile
     
-    dark_start=FF_image(in_folder, 'dark_pre_', N_ff)
-    dark_end=FF_image(in_folder, 'dark_pre_', N_ff)
+    dark_start=FF_image(in_folder, 'dark_post_', N_ff)
+    dark_end=FF_image(in_folder, 'dark_post_', N_ff)
     
     raw_proj=tifffile.imread(in_folder+name)#only left tile
     print('Projection: ', proj0)
     ffc=FlatField(raw_proj, ff_start, ff_end, dark_start, dark_end, proj0, N_proj)#.astype('uint16')
-    tifffile.imwrite(out_folder+'ffc_000'+str(proj0)+'.tif.tif', ffc, photometric='minisblack')
+    tifffile.imwrite(out_folder+'ffc_000'+str(proj0)+'.tif', ffc, photometric='minisblack')
     print('Ellapsed time = ', time.time()-st_time)
     proj0+=1
