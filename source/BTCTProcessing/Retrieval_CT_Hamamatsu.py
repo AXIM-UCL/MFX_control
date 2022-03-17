@@ -116,11 +116,11 @@ def retrieval_save_steps(proj):
 
 ##-------------------Main----------------##
 
-Nproj=2000
+Nproj=1000
 
 tic = time.time()
 
-pool = mp.Pool(mp.cpu_count()-5)
+pool = mp.Pool(48)
 pool.map(retrieval_save_steps, range(Nproj))
 pool.close()
 
