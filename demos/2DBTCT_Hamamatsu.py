@@ -15,7 +15,7 @@ from source.BTCTMotors import tools_xps
 
 start_time = time.time()
 print('Waiting for source to stabilize')
-time.sleep(3600)
+#time.sleep(3600)
 ######################## ------------Parameters ------------------#############
 
 path = r'D:\Data\22_03_03\2BTCT_2000proj_4x4_ChickenWing_1.2s\\'
