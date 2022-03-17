@@ -47,7 +47,29 @@ def phase_retrieval(sample, ff_start, ff_end, fraction, x_step, y_step, xs, ys):
         
     return x_shifts, y_shifts, abs_img
 
-def retrieval_save_steps(proj, folder, folder_out, xs, ys, Nproj):
+def retrieval_save_steps(proj):
+    
+    #folder=r'/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s//'
+    folder=r'/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s/DFC'
+    beamlet_name=r'/home/cleon/RDSS_Carlos/DATA/2BTCT_2000proj_4x4_RatHeart_2s/DFC/dith_x_0dith_y_0/ff_pre.tif'
+    folder_out='/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s/Retrieved//'
+    #beamlet_name='sample_xpos_0.0_ypos_0.0.dat'
+    
+    ff_beamlet=tifffile.imread(beamlet_name)
+    ff_beamlet=ff_beamlet.astype(np.float32)
+    ff_blur = cv2.GaussianBlur(ff_beamlet,(3,3),0)
+    mean_x=np.mean(ff_blur, axis=0)
+    mean_y=np.mean(ff_blur, axis=1)
+        
+    ys,_=find_peaks(mean_y, distance=4);ys=ys[1:-1]
+    xs,_=find_peaks(mean_x, distance=4);xs=xs[1:-1]
+    
+    try:
+        out=os.mkdir(folder_out)
+    except OSError:
+        print ("Directory %s already exists" % folder_out)
+    
+    Nproj=2000
     num_dith_y=4
     num_dith_x=4
     
@@ -93,27 +115,19 @@ def retrieval_save_steps(proj, folder, folder_out, xs, ys, Nproj):
 
 
 ##-------------------Main----------------##
-folder=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\\'
-folder_data=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC'
-beamlet_name=r'\home\cleon\RDSS_Carlos\DATA\22_03_03\2BTCT_2000proj_4x4_RatHeart_2s\DFC\dith_x_0dith_y_0\\ff_pre.tif'
-folder_out=folder+'Retrieved\\'
-#beamlet_name='sample_xpos_0.0_ypos_0.0.dat'
 
-ff_beamlet=tifffile.imread(beamlet_name)
-ff_beamlet=ff_beamlet.astype(np.float32)
-ff_blur = cv2.GaussianBlur(ff_beamlet,(3,3),0)
-mean_x=np.mean(ff_blur, axis=0)
-mean_y=np.mean(ff_blur, axis=1)
-    
-ys,_=find_peaks(mean_y, distance=4);ys=ys[1:-1]
-xs,_=find_peaks(mean_x, distance=4);xs=xs[1:-1]
+Nproj=10
 
-try:
-    out=os.mkdir(folder_out)
-except OSError:
-    print ("Directory %s already exists" % folder_out)
+tic = time.time()
 
-Nproj=2000
+pool = mp.Pool(mp.cpu_count())
+pool.map(retrieval_save_steps, range(Nproj))
+pool.close()
+
+toc = time.time()
+
+print('Done in {:.4f} seconds'.format(toc-tic))
+
 
 # if __name__ == '__main__':
 
@@ -124,15 +138,11 @@ Nproj=2000
 #         pool.apply_async(retrieval_save_steps, args=(i, folder_data, folder_out, xs, ys, Nproj))
 #     pool.close()
 
-retrieval_save_steps(10, folder_data, folder_out, xs, ys, Nproj)
+#retrieval_save_steps(12)
 
 
 #if __name__ == '__main__':
     #pool = mp.Pool(5)
     
     
-
-
-
-
  

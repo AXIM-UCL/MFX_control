@@ -15,7 +15,7 @@ from source.BTCTMotors import tools_xps
 
 start_time = time.time()
 print('Waiting for source to stabilize')
-#time.sleep(7200)
+time.sleep(3600)
 ######################## ------------Parameters ------------------#############
 
 path = r'D:\Data\22_03_03\2BTCT_2000proj_4x4_ChickenWing_1.2s\\'
@@ -149,12 +149,12 @@ print('Done')
 
 crashes=0
 
-y_start=0
+y_start=3
 for i in range(y_start, num_dith_y):
         tools_xps.move_ymask_abs(My+i*y_step)
         x_start=0
         if(i==y_start):
-            x_start=3 
+            x_start=1
         for j in range(x_start, num_dith_x):
             print('Acquiring dithering step x: '+str(j)+'and dithering step y: '+str(i))
             tools_xps.move_xmask_abs(Mx+j*x_step)
