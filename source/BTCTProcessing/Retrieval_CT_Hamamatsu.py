@@ -51,7 +51,7 @@ def retrieval_save_steps(proj):
     
     #folder=r'/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s//'
     folder=r'/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s/DFC'
-    beamlet_name=r'/home/cleon/RDSS_Carlos/DATA/2BTCT_2000proj_4x4_RatHeart_2s/DFC/dith_x_0dith_y_0/ff_pre.tif'
+    beamlet_name=r'/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s/DFC/dith_x_0dith_y_0/ff_pre.tif'
     folder_out='/home/cleon/RDSS_Carlos/DATA/22_03_03/2BTCT_2000proj_4x4_RatHeart_2s/Retrieved//'
     #beamlet_name='sample_xpos_0.0_ypos_0.0.dat'
     
